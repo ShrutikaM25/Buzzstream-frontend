@@ -1,0 +1,151 @@
+.container {
+    width: 700px;
+    margin: 20px auto;
+    columns: 2;
+    column-gap: 10px;
+    animation: fadeInUp 0.5s ease-in-out;
+  }
+  
+  .planCard {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 350px;
+    margin: 10px;
+    background-color: #fff;
+    transition: box-shadow 0.3s ease;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .planCard:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .planCard h2 {
+    color: #333;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  .planCard p {
+    color: #777;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+  }
+  
+  .planCard ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 15px;
+  }
+  
+  .planCard li {
+    color: #555;
+  }
+  
+  .subscribeButton {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .subscribeButton:hover {
+    background-color: #2980b9;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .payment {
+    max-width: 600px; /* Adjust the max-width as needed */
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    background-color: #fff;
+    text-align: center;
+  }
+  
+
+
+.payment p {
+  margin: 10px 0;
+}
+
+.payment .selected-plan {
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.stripe-checkout-btn {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background-color 0.3s ease;
+
+  /* Adjust the width for larger screens */
+  width: 200px; /* Set a width that suits your design */
+  max-width: 100%; /* Ensure it adapts to smaller screens */
+}
+
+
+.payment .stripe-checkout-btn:hover {
+  background-color: #1a252f; 
+}
+
+
+
+@media screen and (max-width: 575px) {
+  .container {
+    columns: 1;
+    column-gap: 10px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .container {
+    width: 500px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .container {
+    width: 600px;
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  .container {
+    width: 700px;
+  }
+
+}
