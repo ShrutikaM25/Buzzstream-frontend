@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Particles from 'particles.js';
 import './index.css';
+import config from '../../config.js'
 
 const WeatherApp = () => {
   const [weatherCondition, setWeatherCondition] = useState('');
   const [loading, setLoading] = useState(true);
 
   const getWeatherInfo = async (lat, lon) => {
-    const apiKey = '66bfd9c2c2756082558938e413e553a0';
+    const apiKey = config.openWeatherMapApiKey;
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`;
 
     try {
@@ -34,14 +35,12 @@ const WeatherApp = () => {
     console.log('Weather Condition:', weatherCondition); 
 
 
-    // Set different themes based on weather conditions and time
     let backgroundGradient, color;
 
-  // Set different gradient themes based on weather conditions and time
+
   if (weatherCondition === 'Clear') {
     if (currentTime >= 6 && currentTime < 18) {
-      // Daytime for clear sky
-      backgroundGradient = 'linear-gradient(to right, #87CEEB, #B0E0E6)'; // Sky Blue gradient
+      backgroundGradient = 'linear-gradient(to right, #87CEEB, #B0E0E6)'; 
       color = '#000000'
     } else {
       backgroundGradient = 'linear-gradient(to right, #ADD8E6, #1E90FF)'; 
@@ -115,13 +114,20 @@ const WeatherApp = () => {
   }
     }
   else if (weatherCondition === 'Clouds') {
-    const sunContainer = document.createElement('div');
+    const currentTime = new Date().getHours(); 
+      if (currentTime >= 6 && currentTime < 18) {
+        const sunContainer = document.createElement('div');
         sunContainer.classList.add('sun-container');
         document.body.appendChild(sunContainer);
       
         const sun = document.createElement('div');
         sun.classList.add('sun');
-        sunContainer.appendChild(sun); 
+        sunContainer.appendChild(sun);
+      } else if (currentTime > 18) {
+        setInterval(() => {
+          generateStars();
+        }, 100);
+      }
   }
 
   const generateStars = () => {
