@@ -112,9 +112,9 @@
   margin-top: 15px;
   transition: background-color 0.3s ease;
 
-  /* Adjust the width for larger screens */
-  width: 200px; /* Set a width that suits your design */
-  max-width: 100%; /* Ensure it adapts to smaller screens */
+
+  width: 200px; 
+  max-width: 100%;
 }
 
 
