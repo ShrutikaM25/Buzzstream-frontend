@@ -10,6 +10,7 @@ import Post from '../../Feed/Post/Post';
 import axios from 'axios';
 import LockResetIcon from '@mui/icons-material/LockReset';
 import EditProfile from '../EditProfile/EditProfile.js';
+import BACK_URL from '../../../helper.js';
 
 const MainPage = ({user}) => {
     const navigate = useNavigate();
@@ -18,7 +19,7 @@ const MainPage = ({user}) => {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-     fetch(`http://localhost:5000/userPost?email=${user?.email}`) 
+     fetch(`${BACK_URL}/userPost?email=${user?.email}`) 
      .then(res => res.json())
      .then(data =>{
       setPosts(data)
@@ -43,7 +44,7 @@ const MainPage = ({user}) => {
             }
             setisLoading(false);
             if(url){
-                axios.patch(`http://localhost:5000/userUpdates/${user?.email}`, userCoverImage);
+                axios.patch(`${BACK_URL}/userUpdates/${user?.email}`, userCoverImage);
             }
         })
     }
@@ -64,7 +65,7 @@ const MainPage = ({user}) => {
             }
             setisLoading(false);
             if(url){
-                axios.patch(`http://localhost:5000/userUpdates/${user?.email}`, userProfileImage);
+                axios.patch(`${BACK_URL}/userUpdates/${user?.email}`, userProfileImage);
             }
         })
     }
@@ -133,6 +134,7 @@ const MainPage = ({user}) => {
                                     </div>
                                 </div>
                                 <div className='subscription-plan'>
+                                    Subscription Plan: 
                                     {
                                     loggedInUser[0]?.subscriptionPlan ? <h2>{loggedInUser[0]?.subscriptionPlan}</h2> : '' 
                                     }
