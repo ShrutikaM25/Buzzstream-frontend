@@ -4,7 +4,6 @@ import {useNavigate} from 'react-router-dom'
 import './index.css'
 import auth from '../../firebase.init';
 import  {useAuthState } from 'react-firebase-hooks/auth';
-import axios from 'axios';
 
 
 const SubscriptionPlans = () => {
@@ -20,19 +19,19 @@ const SubscriptionPlans = () => {
       id: 1,
       name: 'Standard Plan',
       price: 19.99 ,
-      features: ['30 tweets/day', 'Priority support'],
+      features: ['5 tweets/day', 'Priority support'],
     },
     {
       id: 2,
       name: 'Premium Plan',
       price: 29.99,
-      features: ['Unlimited tweets', '24/7 premium support'],
+      features: ['10 tweets/day', '24/7 premium support'],
     },
     {
       id: 3,
       name: 'Exclusive Plan',
       price: 49.99,
-      features: ['Exclusive posts', 'Notification of exclusive posts', 'Subscriber-only Spaces'],
+      features: ['','Exclusive posts', 'Notification of exclusive posts', 'Subscriber-only Spaces'],
     },
     {
       id: 4,
@@ -60,7 +59,6 @@ const SubscriptionPlans = () => {
         'A Subscriber Badge',
         'Subscription posts tab',
         'Subscriber messages',
-        '30 tweets/day',
         'Priority support',
         'Unlimited tweets',
         '24/7 premium support',
@@ -81,9 +79,7 @@ const SubscriptionPlans = () => {
     ev.preventDefault();
         console.log("ABB", plan, price);
         await updateDet();
-        //setDetails({...details, "plan" : plan, "price" : price})
         console.log("XYZ", details);
-        await axios.patch(`http://localhost:5000/userUpdates/${email}`, {subscriptionPlan:plan})
         navigate(`/payment/${plan}/${price}`);
   }
   return (
