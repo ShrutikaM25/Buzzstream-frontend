@@ -1,4 +1,3 @@
-
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Home from './pages/Home';
@@ -20,36 +19,34 @@ import WeatherApp from './pages/DynamicTheme/index.js';
 import Subscriptions from './pages/Subcriptions/index.js';
 import Payment from './pages/Subcriptions/payment.js';
 
-
 function App() {
   return (
     <div className="App">
-      <WeatherApp/>
-        <BrowserRouter>
+      <WeatherApp />
+      <BrowserRouter>
         <Routes>
-            <Route path='/' element={<ProtectedRoute><Home/></ProtectedRoute>}>
-              <Route index element={<Feed />}/>
-            </Route>
-            <Route path='/home' element={<ProtectedRoute><Home/></ProtectedRoute>}>
-              <Route path='feed' element={<Feed />}></Route>
-              <Route path='explore' element={<Explore />}></Route> 
-              <Route path='notifications' element={<Notifications />}></Route>
-              <Route path='messages' element={<Messages />}></Route>
-              <Route path='bookmarks' element={<Bookmarks />}></Route>
-              <Route path='lists' element={<Lists />}></Route>
-              <Route path='profile' element={<Profile />}></Route>
-              <Route path='more' element={<More />}></Route>
-              <Route path='live-stream' element={<Room/>}></Route>
-              <Route path='/live/:roomId' element={<LiveStream/>} />
-              <Route path='subscription' element={<Subscriptions/>}></Route>
-            </Route>
-            <Route path='/login' element={<Login/>}></Route>
-            <Route path='/signup' element={<Signup/>}></Route>
-            <Route path='/page-loading' element={<PageLoading/>}></Route>
-            <Route path='/live/:roomId' element={<LiveStream/>} />
-            <Route path= '/payment/:plan/:price' element={<Payment />} />
+          <Route path='/' element={<ProtectedRoute><Home /></ProtectedRoute>}>
+            <Route index element={<Feed />} />
+          </Route>
+          <Route path='/home' element={<ProtectedRoute><Home /></ProtectedRoute>}>
+            <Route path='feed' element={<Feed />} />
+            <Route path='explore' element={<Explore />} />
+            <Route path='notifications' element={<Notifications />} />
+            <Route path='messages' element={<Messages />} />
+            <Route path='bookmarks' element={<Bookmarks />} />
+            <Route path='lists' element={<Lists />} />
+            <Route path='profile' element={<Profile />} />
+            <Route path='more' element={<More />} />
+            <Route path='live-stream' element={<Room />} />
+            <Route path='subscription' element={<Subscriptions />} />
+          </Route>
+          <Route path='/login' element={<Login />} />
+          <Route path='/signup' element={<Signup />} />
+          <Route path='/page-loading' element={<PageLoading />} />
+          <Route path='/live/:roomId' element={<LiveStream />} />
+          <Route path='/payment/:plan/:price' element={<Payment />} />
         </Routes>
-        </BrowserRouter>
+      </BrowserRouter>
     </div>
   );
 }
