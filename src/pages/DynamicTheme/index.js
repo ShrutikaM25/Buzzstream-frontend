@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import Particles from 'particles.js';
+import React, { useEffect, useState, useRef } from 'react';
 import './index.css';
 import config from '../../config.js'
 
 const WeatherApp = () => {
   const [weatherCondition, setWeatherCondition] = useState('');
   const [loading, setLoading] = useState(true);
-
+  const [animationElements, setAnimationElements] = useState([]);
+  const animationContainerRef = useRef(null);
   const getWeatherInfo = async (lat, lon) => {
     const apiKey = config.openWeatherMapApiKey;
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`;
@@ -43,7 +43,7 @@ const WeatherApp = () => {
       backgroundGradient = 'linear-gradient(to right, #87CEEB, #B0E0E6)'; 
       color = '#000000'
     } else {
-      backgroundGradient = 'linear-gradient(to right, #ADD8E6, #1E90FF)'; 
+      backgroundGradient = 'linear-gradient(to right, #1E90FF, #000000)'; 
       color = '#FFFFFF';
     }
   } else if (weatherCondition === 'Clouds') {
@@ -66,41 +66,28 @@ const WeatherApp = () => {
   };
 
   const updateAnimations = (weatherCondition) => {
-    const animationContainer = document.getElementById('animation-container');
-  
-    if (!animationContainer) {
-      console.error('Animation container not found');
-      return;
-    }
-  
+    const animationContainer = animationContainerRef.current;
+
+    // if (!animationContainer) {
+    //   console.error('Animation container not found');
+    //   return;
+    // }
+
+    setAnimationElements([]);
+
     if (weatherCondition === 'Clear') {
-      const currentTime = new Date().getHours(); 
+      const currentTime = new Date().getHours();
       if (currentTime >= 6 && currentTime < 18) {
-        const sunContainer = document.createElement('div');
-        sunContainer.classList.add('sun-container');
-        document.body.appendChild(sunContainer);
-      
-        const sun = document.createElement('div');
-        sun.classList.add('sun');
-        sunContainer.appendChild(sun);
-      } else if (currentTime < 18) {
+        setAnimationElements([<div key={1} className="sun" />]);
+      } else if (currentTime > 18) {
         setInterval(() => {
           generateStars();
         }, 100);
+        
       }
-      
     } else if (weatherCondition === 'Snow') {
-      if (typeof Particles.init === 'function') {
-        Particles.init({
-          selector: '.snow-animation',
-          sizeVariations: 5,
-          color: '#ffffff',
-          connectParticles: true,
-          maxParticles: 100,
-        });
-      }
+      setAnimationElements([<div key={1} className="snowfall" />]);
     } else if (weatherCondition === 'Rain') {
-
       const rainContainer = document.createElement('div');
   rainContainer.classList.add('rain-container');
   document.body.appendChild(rainContainer);
@@ -112,24 +99,19 @@ const WeatherApp = () => {
     raindrop.style.animationDuration = `${Math.random() * 1 + 0.5}s`;
     rainContainer.appendChild(raindrop);
   }
-    }
-  else if (weatherCondition === 'Clouds') {
-    const currentTime = new Date().getHours(); 
+    } else if (weatherCondition === 'Clouds') {
+      const currentTime = new Date().getHours();
       if (currentTime >= 6 && currentTime < 18) {
-        const sunContainer = document.createElement('div');
-        sunContainer.classList.add('sun-container');
-        document.body.appendChild(sunContainer);
-      
-        const sun = document.createElement('div');
-        sun.classList.add('sun');
-        sunContainer.appendChild(sun);
+        setAnimationElements([<div key={1} className="sun" />]);
+  
       } else if (currentTime > 18) {
         setInterval(() => {
           generateStars();
         }, 100);
       }
-  }
-
+    }
+  };
+  
   const generateStars = () => {
     let star = document.createElement('div');
     star.setAttribute('class', 'star');
@@ -146,8 +128,6 @@ const WeatherApp = () => {
     }, 5000);
   };
 
-
-  };
   
 
   useEffect(() => {
@@ -164,6 +144,7 @@ const WeatherApp = () => {
           setWeatherCondition(weatherInfo);
           updateTheme(weatherInfo, currentTime);
           updateAnimations(weatherInfo);
+          console.log("MMM:", animationElements)
         }
       }
 
@@ -179,7 +160,8 @@ const WeatherApp = () => {
 
   return (
     <div>
-      <div id="animation-container" className="snow-animation">
+      <div id="animation-container" >
+        {animationElements}
       </div>
     </div>
   );
