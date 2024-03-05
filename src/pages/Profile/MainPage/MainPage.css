@@ -164,3 +164,25 @@
     cursor: pointer;
 }
 
+.subscription-plan {
+    font-family: 'Arial', sans-serif;
+    background-color: #f2f2f2;
+    color: black;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+  }
+  
+  
+  .subscription-plan h2 {
+    margin-left: 10px;
+    color: #3498db; 
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+
