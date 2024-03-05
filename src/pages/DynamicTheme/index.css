@@ -69,14 +69,11 @@
   }
 }
 
-.sun-container {
-  position: absolute;
-  bottom: 0; /* Start from the bottom */
-  left: 50%;
-  transform: translate(-50%, 0);
-}
-
 .sun {
+  position: absolute;
+  top: -2rem; 
+  right: -4rem;
+  transform: translate(-50%, 0);
   width: 100px;
   height: 100px;
   background-color: #FFD700;
@@ -85,7 +82,7 @@
               0 0 0 20px #ffde0040,
               0 0 0 30px #ffde0020,
               0 0 20px 40px #ffde0010;
-  animation: moveSun 8s linear infinite;
+  /* animation: moveSun 8s linear infinite; */
 }
 
 @keyframes moveSun {
@@ -106,9 +103,6 @@
   }
 }
 
-
-
-/* Add this CSS to your styles */
 .snow-animation {
   position: fixed;
   top: 0;
